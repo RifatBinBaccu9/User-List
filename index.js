@@ -1,9 +1,8 @@
-const userData = (search) =>{
+const userData = () =>{
     fetch(`https://jsonplaceholder.typicode.com/users`)
     .then((res) => res.json())
     .then((data) => {
         viewData(data)
-        console.log(data)
     })
 }
 
@@ -11,8 +10,8 @@ const viewData = (info) =>{
    const userCard =document.getElementById('userCard');
      info.forEach(data => {
         const cardDivCreate=document.createElement('div');
-        cardDivCreate.classList=`bg-base-200 p-10 rounded-xl shadow-md hover:shadow-green-400`;
-        cardDivCreate.innerHTML=` <div class="flex lg:flex-row gap-10">
+        cardDivCreate.classList=`font-bold`;
+        cardDivCreate.innerHTML=` <div onclick="toDoList('${data.name}', '${data.email}', '${data.address.city}')" class="flex lg:flex-row gap-10 bg-base-200 p-10 rounded-xl shadow-md hover:shadow-green-400">
                 <div class="indicator">
                     <span class="indicator-item badge badge-secondary"></span>
                     <div class="bg-base-300 grid h-20 w-20 place-items-center rounded-lg">User</div>
@@ -78,6 +77,36 @@ const showDetails = (name,username,email,phone,webSite,street,suite,city,zipcode
 userData()
 
 
+
+const toDoList = (name, email, city) =>{
+  const user =document.getElementById('user');
+  user.classList.add('hidden');
+
+  const removeHidden=document.getElementById('removeHidden');
+  removeHidden.classList.remove('hidden');
+
+  const listCard =document.getElementById('listCard');
+  const listCardDiv =document.createElement('div');
+  listCardDiv.classList=` text-center`;
+  listCardDiv.innerHTML=`<div class="pt-[100px]">
+          <i class="fa-regular fa-user  text-[130px] text-[#406973] border-8 border-dashed border-[#406973] p-5"></i>
+        </div>
+        <div class="pt-6 pb-[80px]">
+         <h1 class="text-xl font-extralight">${name}</h1>
+         <h1 class="text-xl font-extralight ">${email},${city}</h1>
+        </div>`;
+    listCard.appendChild(listCardDiv);
+};
+
+const Logout = () =>{
+    const Hiddens=document.getElementById('removeHidden');
+    Hiddens.classList.add('hidden');
+
+  const users =document.getElementById('user');
+  users.classList.remove('hidden');
+  const listCard =document.getElementById('listCard');
+  listCard.innerHTML='';
+}
 
 // const search = document.getElementById('search').addEventListener('keyup', function search (){
 //   const searchDatas=document.getElementById('search').value;

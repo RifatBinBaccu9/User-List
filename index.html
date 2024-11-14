@@ -7,6 +7,8 @@
     
     <link href="https://cdn.jsdelivr.net/npm/daisyui@4.12.14/dist/full.min.css" rel="stylesheet" type="text/css" />
     <script src="https://cdn.tailwindcss.com"></script>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 </head>
 <body>
 
@@ -28,9 +30,9 @@
     </nav>
 <!-- Nav section end -->
 
-<!-- User card section srart -->
- <div class="w-[80%] mx-auto my-10">
-      <h1 class="text-4xl text-green-500 font-bold text-center">User</h1>
+<!-- User card section start -->
+ <div id="user" class="w-[80%] mx-auto my-10">
+      <h1 class="text-4xl text-green-500 font-bold text-center">User Info</h1>
 
     <div  id="userCard" class="mt-10 grid grid-cols-2 gap-5">
 
@@ -42,11 +44,36 @@
  <!-- Open the modal using ID.showModal() method -->
 <dialog id="modal_add" class="modal">
     
-        
-    
-    
 </dialog>
 <!-- User card section end -->
+
+<!-- to do list section start -->
+ <section id="removeHidden" class="bg-[#F3F0E0] hidden">
+  <div class="pt-6 pb-20">
+    <div class="w-[80%] mx-auto ">
+      <div id="Logout" class="text-end">
+           <div class="py-6">
+               <i class="fa-solid fa-right-from-bracket text-4xl font-extrabold" onclick="Logout()"></i>
+           </div>
+      </div>
+
+      <div class="flex gap-6">
+        <div id="listCard" class="w-[40%] bg-[#FFC89B]  rounded-lg">
+        
+        </div>
+
+        <div>
+           
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+ </section>
+<!-- to do list section end -->
+
+
 <!-- <div class="flex-none gap-2">
     <div class="">
       <label class="input input-bordered  input-info flex items-center gap-2">
@@ -85,6 +112,8 @@
       </ul>
     </div>
   </div> -->
+
+  <!-- footer section start -->
 <footer class="footer bg-base-200 text-base-content p-10">
     <aside>
       <svg
@@ -125,6 +154,7 @@
       <a class="link link-hover">Cookie policy</a>
     </nav>
   </footer>
+ <!-- footer section end -->
 
   <script src="./index.js"></script>
 </body>
