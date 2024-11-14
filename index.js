@@ -108,7 +108,55 @@ const Logout = () =>{
   listCard.innerHTML='';
 }
 
-// const search = document.getElementById('search').addEventListener('keyup', function search (){
-//   const searchDatas=document.getElementById('search').value;
-//    userData(searchDatas)
-// });
+const userContentListData = (search='1') =>{
+    fetch(`https://jsonplaceholder.typicode.com/todos?userId=${search}`)
+    .then((res) => res.json())
+    .then((data) =>{
+        userContents(data);
+    })
+}
+const userContents = (listData) =>{
+    const userContents=document.getElementById('userContents');
+    userContents.innerHTML='';
+    listData.forEach(listData =>{
+        const listDivCreate=document.createElement('div');
+        listDivCreate.innerHTML=`<h1 id="colorChanges" class="${listData.completed ? 'bg-green-500':'bg-red-500'} rounded-xl font-normal text-xl py-3 px-6 mb-6 flex justify-between items-center
+        ">${listData.title} <i onclick="colorChange(this)" class="fa-solid fa-check text-4xl font-extrabold"></i></h1>`;
+        userContents.appendChild(listDivCreate);
+    })
+}
+
+const colorChange = (element) => {
+    const parentElement = element.parentNode; 
+    if (parentElement) {
+        if (parentElement.classList.contains('bg-green-500')) {
+            parentElement.classList.remove('bg-green-500');
+            parentElement.classList.add('bg-red-500');
+        } else {
+            parentElement.classList.remove('bg-red-500');
+            parentElement.classList.add('bg-green-500');
+        }
+    }
+};
+
+document.getElementById('search').addEventListener('keyup', function search (){
+  const searchDatas=document.getElementById('search')
+  const searchDatalist=searchDatas.value;
+  userContentListData(searchDatalist);
+  searchDatas.value='';
+});
+
+const addListItem = (completed) =>{
+    const addListItems=document.getElementById('addListItems')
+    const listItemText=addListItems.value;   
+
+    const userContents=document.getElementById('userContents');
+    
+    const userItemDivCreate=document.createElement('div');
+    userItemDivCreate.innerHTML=`<h1 class="bg-red-500 rounded-xl font-normal text-xl py-3 px-6 my-3 flex justify-between items-center
+    "><span id="pushText">${listItemText}</span><i onclick="colorChange(this)" class="fa-solid fa-check text-4xl font-extrabold"></i></h1>`;
+
+    userContents.appendChild(userItemDivCreate);
+    addListItems.value='';
+}
+userContentListData();
