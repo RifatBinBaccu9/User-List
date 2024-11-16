@@ -71,6 +71,7 @@ const userContentListData = (userId) =>{
 }
 const userContents = (listData) =>{
     const userContents=document.getElementById('userContents');
+    userContents.innerHTML='';
     listData.forEach(listData =>{
         const listDivCreate=document.createElement('div');
         listDivCreate.innerHTML=`<li id="colorChanges" class="${listData.completed ?'bg-green-500 line-through':'bg-red-500'} list-none rounded-xl font-normal text-xl py-3 px-6 mb-6 flex justify-between items-center
@@ -108,15 +109,14 @@ const textColorChange = (element) => {
         }
     }
 
-const addListItem = (completed) =>{
+const addListItem = () =>{
     const addListItems=document.getElementById('addListItems')
     const listItemText=addListItems.value;   
 
     const userContents=document.getElementById('userContents');
     
     const userItemDivCreate=document.createElement('div');
-    userItemDivCreate.innerHTML=`<h1 class="bg-red-500 rounded-xl font-normal text-xl py-3 px-6 my-3 flex justify-between items-center
-    "><span id="pushText">${listItemText}</span class="no-underline"><p onclick="colorChange(this)"><i class="fa-solid fa-check text-4xl font-extrabold text-black"></i></p></h1>`;
+    userItemDivCreate.innerHTML=`<li class="bg-red-500 rounded-xl flex list-none font-normal text-xl py-3 px-6 my-3 justify-between items-center">${listItemText}<p onclick="colorChange(this)"><i onclick="textColorChange(this)" class="fa-solid fa-check text-4xl font-extrabold text-white"></i></p></li>`;
 
     userContents.insertBefore(userItemDivCreate, userContents.firstChild);
     addListItems.value='';
