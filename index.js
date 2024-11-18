@@ -8,10 +8,11 @@ const userData = () =>{
 
 const viewData = (info) =>{
    const userCard =document.getElementById('userCard');
+
      info.forEach(data => {
         const cardDivCreate=document.createElement('div');
         cardDivCreate.classList=`font-bold`;
-        cardDivCreate.innerHTML=` <div onclick="toDoList('${data.name}', '${data.email}', '${data.address.city}'); userContentListData('${data.id}')" class="flex lg:flex-row gap-10 bg-base-200 p-10 rounded-xl shadow-md hover:shadow-green-400">
+        cardDivCreate.innerHTML=` <div onclick="window.location.href='./todolist.html?id=${data.id}'" class="flex lg:flex-row gap-10 bg-base-200 p-10 rounded-xl shadow-md hover:shadow-green-400">
                 <div class="indicator">
                     <div class="bg-base-300 grid h-20 w-20 place-items-center rounded-lg">User</div>
                 </div>
@@ -24,49 +25,54 @@ const viewData = (info) =>{
                 </div>
               </div>
             </div>`;
-
+           
             userCard.appendChild(cardDivCreate);
-
-     });
-
+     }); 
 }
+const urlParams = new URLSearchParams(window.location.search);
+const userId = urlParams.get('id');
 
-const toDoList = (name, email, city) =>{
-  const user =document.getElementById('user');
-  user.classList.add('hidden');
-
-  const removeHidden=document.getElementById('removeHidden');
-  removeHidden.classList.remove('hidden');
-
-  const listCard =document.getElementById('listCard');
-  const listCardDiv =document.createElement('div');
-  listCardDiv.classList=` text-center`;
-  listCardDiv.innerHTML=`<div class="pt-[100px]">
-          <i class="fa-regular fa-user  text-[130px] text-[#406973] border-8 border-dashed border-[#406973] p-5"></i>
-        </div>
-        <div class="pt-6 pb-[80px]">
-         <h1 class="text-xl font-extralight">${name}</h1>
-         <h1 class="text-xl font-extralight ">${email},${city}</h1>
-        </div>`;
-    listCard.appendChild(listCardDiv);
+const userList = () => {
+    fetch(`https://jsonplaceholder.typicode.com/users?id=${userId}`)
+    .then((res) => res.json())
+    .then((data) => {
+        userDataList(data[0])
+    })
 };
 
-const Logout = () =>{
-    const Hiddens=document.getElementById('removeHidden');
-    Hiddens.classList.add('hidden');
 
-  const users =document.getElementById('user');
-  users.classList.remove('hidden');
+const userDataList = (user) => {
+    
+        const listCard = document.getElementById('listCard');
+        const listCardDiv = document.createElement('div');
+        listCardDiv.classList.add('text-center');
+        listCardDiv.innerHTML = `
+            <div class="pt-[100px]">
+                <i class="fa-regular fa-user text-[130px] text-[#406973] border-8 border-dashed border-[#406973] p-5"></i>
+            </div>
+            <div class="pt-6 pb-[80px]">
+                <h1 class="text-xl font-extralight">${user.name}</h1>
+                <h1 class="text-xl font-extralight">${user.email}</h1>
+            </div>`;
+        
+            listCard.appendChild(listCardDiv);
+    }
+
+
+
+const Logout = () =>{
+    window.location.href = "./index.html";
   const listCard =document.getElementById('listCard');
   listCard.innerHTML='';
 }
 
-const userContentListData = (userId) =>{
+const userContentListData = () =>{
     fetch(`https://jsonplaceholder.typicode.com/todos?userId=${userId}`)
     .then((res) => res.json())
     .then((data) =>{
-        console.log(data)
         userContents(data);
+        console.log(data);
+        
     })
 }
 const userContents = (listData) =>{
@@ -125,4 +131,5 @@ const addListItem = () =>{
 
 
 userData()
+userList()
 userContentListData();

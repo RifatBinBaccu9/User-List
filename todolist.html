@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="https://cdn.jsdelivr.net/npm/daisyui@4.12.14/dist/full.min.css" rel="stylesheet" type="text/css" />
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+<body>
+
+
+    <!-- to do list section start -->
+ <section id="removeHidden" class="bg-[#F3F0E0]">
+    <div class="pt-6 pb-20">
+      <div class="w-[80%] mx-auto ">
+        <div id="Logout" class="flex justify-end pt-6 pb-14 gap-10">
+             <div class="">
+                 <i class="fa-solid fa-right-from-bracket text-4xl font-extrabold" onclick="Logout()"></i>
+             </div>
+        </div>
+  
+        <div class="flex gap-20">
+          <div id="listCard" class="w-[40%] bg-[#FFC89B]  rounded-lg">
+          <!-- List card -->
+          </div>
+           
+          <div class="w-[60%] mx-auto ">
+            <h1 class="text-2xl font-extralight pb-6 text-center">MY TO-DO-LIST</h1>
+  
+            <div class="">
+  
+              <div class="">
+                <label class="input input-bordered  input-info flex items-center gap-2">
+                    <input id="addListItems" type="text" class="grow" placeholder="Search To Do List" />
+                    <i onclick="addListItem()" class="fa-solid fa-plus text-3xl font-medium"></i>
+                  </label>
+              </div>
+  
+             <div  class="h-[340px] overflow-x-auto mt-6">
+              <div id="userContents">
+  
+              </div>
+              </div>
+            </div>
+          
+          </div>
+             
+          </div>
+        </div>
+      </div>
+  
+    </div>
+  
+   </section>
+  <!-- to do list section end -->
+
+  <script src="./index.js"></script>
+</body>
+</html>
